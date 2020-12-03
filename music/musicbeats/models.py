@@ -32,4 +32,19 @@ class Channel(models.Model):
     music = models.CharField(max_length=10000000)
 
 class Artist(models.Model):
-    
+    artist_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=2000)
+    image = models.ImageField(upload_to='images')
+    tags = models.CharField(max_length=100)
+    songs = models.FileField(upload_to='images')
+
+class Albums(models.Model):
+    albums_id = models.AutoField(primary_key=True)
+    genre = models.CharField(max_length=10000)
+    artist_id = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    title = models.CharField(max_length=1000)
+    artist_pic = models.ImageField(upload_to='images', null=True)
+    art_name = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.title + ' - ' + self.art_name
