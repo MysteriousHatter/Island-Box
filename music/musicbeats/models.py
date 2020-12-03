@@ -30,3 +30,6 @@ class Channel(models.Model):
     channel_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=10000)
     music = models.CharField(max_length=10000000)
+
+class Artist(models.Model):
+    
