@@ -9,13 +9,13 @@
     <form action="/musicbeats/upload" enctype="multipart/form-data" method="POST">{% csrf_token %}
         <div class="form-group">
           <label for="exampleInputEmail1">Your Music Name</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Your Song Name">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="songName" name="name" placeholder="Your Song Name">
         </div>
 
 
         <div class="form-group">
             <label for="exampleInputEmail1">Singer Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="singer" placeholder="Singer Name">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="artistName" name="singer" placeholder="Artist Name">
           </div>
 
 
@@ -32,17 +32,12 @@
 
 
         <div class="form-group">
-          <label for="exampleInputPassword1">Movie Name</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Movie name in which this song is their" name="movie">
-        </div>
-
-        <div class="form-group">
             <label for="exampleInputPassword1">Credit</label>
             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Add Credit Link" name="credit">
           </div>
 
         <div class="form-group">
-            <label for="exampleFormControlFile1">Example file input</label>
+            <label for="exampleFormControlFile1">Music Link (MP3, FLAC, ECT.)</label>
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
           </div>
 
