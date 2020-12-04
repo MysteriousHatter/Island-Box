@@ -22,7 +22,7 @@
 
 <!-- ##############################Cards####################### -->
 <h2 style="padding-left: 7%;padding-top: 2%; font-family:'Verdana';">Trending Songs</h2>
-  <div class="row" style="padding-top: 2%;padding-left: 7%">
+  <div class="row" style="padding-top: 2%;padding-left: 7%; height: 50%">
     {% for i in song %}
     <div class="card" style="width: 18rem;">
       <img src="/media/{{i.image}}" class="card-img-top" alt="...">
@@ -37,8 +37,8 @@
   <hr>
 
 
-<h2 style="padding-left: 7%;padding-top: 2%; font-family:'Verdana';">Favorite Playlists</h2>
-<div class="row" style="padding-top: 2%;padding-left: 7%">
+<h2 style="padding-left: 7%;padding-top: 2%; font-family:'Verdana'; display: block; margin-left: auto; margin-right: auto;width: 45%;">Favorite Playlists</h2>
+<div class="row" style="padding-top: 2%;padding-left: 7% display: block; margin-left: auto; margin-right: auto;width: 60%;">
 
 <div class="card" style="width: 18rem;">
   <img src="{% static 'musicbeats/pic.jpg'%}" class="card-img-top" alt="...">
@@ -66,8 +66,8 @@
 </div>
 </div>
 
-<h2 style="padding-left: 7%;padding-top: 2%; font-family:'Verdana';">Liked Songs</h2>
-<div class="row" style="padding-top: 2%;padding-left: 7%">
+<h2 style="padding-left: 7%;padding-top: 2%; font-family:'Verdana'; display: block; margin-left: auto; margin-right: auto;width: 50%;">Liked Songs</h2>
+<div class="row" style="padding-top: 2%;padding-left: 7% display: block; margin-left: auto; margin-right: auto;width: 60%;">
 
 <div class="card" style="width: 18rem;">
   <img src="{% static 'musicbeats/pic.jpg'%}" class="card-img-top" alt="...">
