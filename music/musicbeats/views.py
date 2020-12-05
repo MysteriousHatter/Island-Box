@@ -161,11 +161,10 @@ def upload(request):
         singer = request.POST['singer']
         tag = request.POST['tag']
         image = request.FILES['images']
-        movie = request.POST['movie']
         credit = request.POST['credit']
         song = request.FILES['file']
 
-        song_model = Song(name=name, singer=singer, tags=tag, image=image, movie=movie, credit=credit, song=song)
+        song_model = Song(name=name, singer=singer, tags=tag, image=image, credit=credit, song=song)
         song_model.save()
 
         music_id = song_model.song_id
