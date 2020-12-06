@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Albums(models.Model):
+    albums_id = models.AutoField(primary_key=True)
+    genre = models.CharField(max_length=10000)
+    title = models.CharField(max_length=1000)
+    artist_pic = models.ImageField(upload_to='images')
+    art_name = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.title + ' - ' + self.art_name
+
+
 class Song(models.Model):
     song_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=2000)
@@ -11,6 +22,7 @@ class Song(models.Model):
     image = models.ImageField(upload_to='images')
     song = models.FileField(upload_to='images')
     credit = models.CharField(max_length=100000, default="")
+    album = models.ForeignKey(Albums, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
@@ -27,7 +39,7 @@ class History(models.Model):
 
 class Channel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    following = models.ManyToManyField(User, related_name='following',blank=True)
+    following = models.ManyToManyField(User, related_name='following', blank=True)
     bio = models.TextField(default='no bio')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -45,13 +57,5 @@ class Channel(models.Model):
 
 
 
-class Albums(models.Model):
-    albums_id = models.AutoField(primary_key=True)
-    genre = models.CharField(max_length=10000)
-    title = models.CharField(max_length=1000)
-    artist_pic = models.ImageField(upload_to='images')
-    art_name = models.CharField(max_length=2000)
 
-    def __str__(self):
-        return self.title + ' - ' + self.art_name
 
