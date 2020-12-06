@@ -1,16 +1,37 @@
 {%extends 'musicbeats/basic.html'%}
-{% block title %}Channel{% endblock %}
+{% block title %} Albums {% endblock %}
+
+
+
 
 {% block body %}
-
-<img src="{{album.album_logo}}">
-
-<h1>{{ album.album_title}}</h1>
-<h3>{{ artist }}</h3>
-
-<ul>
-    {% for song in album %}
-        <li>{{song.song_title}} - {{song.g}}</li>
+<div class="container">
 
 
-</ul>
+
+{% for i in albums %}
+<div class="card mb-3" style="max-width: 940px; padding-top: 3%;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+  <img src="/media/{{i.artist_pic}}" alt="" height="200px" width="150px">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+          <h5 class="card-title" style="color: blue; font-weight: 550;">{{i.title}}</h5>
+          <p class="card-text">{{i.genre}}</p>
+          <p class="card-text">{{i.art_name}}</p>
+        {% if user.is_authenticated %}
+        <form action="/musicbeats/history" method="POST">{% csrf_token %}
+          <input type="hidden" name="music_id" value="{{i.song_id}}">
+        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Playlist</a>
+        </form>
+        {% else %}
+        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Playlist</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
