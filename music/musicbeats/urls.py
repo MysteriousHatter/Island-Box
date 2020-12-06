@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'musicbeats'
+
 urlpatterns = [
     path('songs/', views.songs, name='songs'),
     path('songs/<int:id>', views.songpost, name='songpost'),
@@ -11,9 +13,10 @@ urlpatterns = [
     path('logout_user', views.logout_user, name='logout_user'),
     path('watchlater', views.watchlater, name='watchlater'),
     path('history', views.history, name='history'),
-    path('c/<str:channel>', views.channel, name='channel'),
+    path('channel2', views.ChannelListView.as_view(), name='channel-list-view'),
+    path('<pk>/', views.ChannelDetailView.as_view(), name='channel-Detail'),
+    path('c/<str:channel>', views.channelView, name='channel'),
     path('upload', views.upload, name='upload'),
     path('search', views.upload, name='search'),
-    path('artistlogin', views.artistLogin, name='artistlogin'),
-    path('artistSignup', views.artistSignUp, name='artistSignup'),
+    path('switch_follow', views.follow_unfollow_profile, name='follow-unfollow-view'),
 ]

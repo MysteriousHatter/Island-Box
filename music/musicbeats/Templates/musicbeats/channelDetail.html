@@ -1,0 +1,66 @@
+{%extends 'musicbeats/basic.html'%}
+{% block title %}Profile Detail{% endblock %}
+
+{% block body %}
+<!--models-->
+
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="user plus icon"></i>
+    Are You sure you want to follow {{object}}
+  </div>
+  <div class="content">
+    <p>You will see all the users music if you press yes {{object}}</p>
+  </div>
+  <div class="actions">
+      <form action="{% url 'musicbeats:follow-unfollow-view' %}" method="POST">
+          {% csrf_token %}
+         <input type="hidden" name="profile_pk" value={{object.pk}}><img src="/media/{{object.image}}" alt="" height="500px" width="350px">
+         <button type="submit" class="Green Massive Button">
+         <i class="checkmark icon"></i>
+         Yes
+         </button>
+      </form>
+  </div>
+</div>
+
+<div class="ui grid">
+    <div class="row">
+        <div class="container">
+        {{object}}
+        {{song}}
+        <hr>
+        {% if follow %}
+            <form action="{% url 'musicbeats:follow-unfollow-view' %}" method="POST">
+                {% csrf_token %}
+                 <input type="hidden" name="profile_pk" value= {{object.pk}}>
+                        <div class="col-md-4">
+            <img src="/media/{{object.image}}" alt="" height="500px" width="350px">
+        </div>
+        <div class="col-md-8">
+             <h2 style="padding-top: 5%; font-weight: 550; color: blue">Bio: {{object.name}}</h2>
+            <h2 style="padding-top: 5%; font-weight: 550; color: blue">Title: {{object.name}}</h2>
+            <h2 style="padding-top: 5%; font-weight: 550; color: blue">Title: {{object.following}}</h2>
+            <h4 style="padding-top: 5%; font-weight: 550;">Singer: {{song.singer}}</h4>
+            <audio controls>
+                <source src="/media/{{object.song}}" type="audio/mp3">
+            </audio>
+            <div style="padding-top: 2%;">
+                <button type="submit" class="ui negative button"> unfollow </button>
+                <a href="/musicbeats/songs/{{object.song_id}}" class="btn btn-primary">Listen To Song</a>
+            </form>
+        {% else %}
+            <form action="{% url 'musicbeats:follow-unfollow-view' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value= {{object.pk}}>
+                 <img src="/media/{{object.image}}" alt="" height="500px" width="350px">
+                <button type="submit" class="ui negative button"> follow </button>
+            </form>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

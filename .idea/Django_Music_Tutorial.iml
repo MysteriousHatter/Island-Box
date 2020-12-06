@@ -6,8 +6,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Django_Tutorial_2" />
     <orderEntry type="module" module-name="Django_Tutorial" />
+    <orderEntry type="module" module-name="Music_Projects_Example" />
   </component>
   <component name="PyDocumentationSettings">
+    <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
   </component>
 </module>

@@ -1,9 +1,9 @@
 {%extends 'musicbeats/basic.html'%}
-{% block title %}Login{% endblock %}
+{% block title %}Channel{% endblock %}
 
 {% block body %}
 
-<h2 style="text-align: center; padding-top: 2%; color: yellow;" >Channel: {{channel.name}}</h2>
+<h2 style="text-align: center; padding-top: 2%; color: blue;" >Channel: {{channel.name}}</h2>
 
 {% for i in song %}
 <div class="card mb-3" style="max-width: 940px; padding-top: 3%;">
@@ -29,4 +29,5 @@
 </div>
 {% endfor %}
 </div>
+
 {% endblock %}
