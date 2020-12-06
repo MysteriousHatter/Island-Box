@@ -77,8 +77,8 @@ def songpost(request, id):
     return render(request, 'musicbeats/songpost.html', {'song': song})
 
 def albumDes(request, id):
-    album = Albums.objects.fileter(albums_id=id).first()
-    return render(request, 'musicbeats/albumDescription.html', {'album': album})
+    albums = Albums.objects.filter(songs_id=id).first()
+    return render(request, 'musicbeats/albumDescription.html', {'albumDes': albums})
 
 def albums(request):
     album = Albums.objects.all()
@@ -127,10 +127,10 @@ def logout_user(request):
 
 def channelView(request,channel):
     chan = Channel.objects.filter(name=channel).first()
-    video_ids = str(chan.music).split(" ")[1:]
+    #video_ids = str(chan.music).split(" ")[1:]
 
-    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
-    song = Song.objects.filter(song_id__in=video_ids).order_by(preserved)
+    #preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
+    #song = Song.objects.filter(song_id__in=video_ids).order_by(preserved)
 
 
     return render(request, "musicbeats/channel.html", {"channel": chan})

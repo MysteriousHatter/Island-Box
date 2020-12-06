@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.auth.models import UserManager
 # Create your models here.
+
+
+
 
 class Albums(models.Model):
     albums_id = models.AutoField(primary_key=True)
@@ -9,6 +12,7 @@ class Albums(models.Model):
     title = models.CharField(max_length=1000)
     artist_pic = models.ImageField(upload_to='images')
     art_name = models.CharField(max_length=2000)
+
 
     def __str__(self):
         return self.title + ' - ' + self.art_name
