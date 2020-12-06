@@ -23,10 +23,10 @@
         {% if user.is_authenticated %}
         <form action="/musicbeats/history" method="POST">{% csrf_token %}
           <input type="hidden" name="music_id" value="{{i.song_id}}">
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Playlist</a>
+        <a href="/musicbeats/songs/" class="btn btn-primary">Listen To Album</a>
         </form>
         {% else %}
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Playlist</a>
+        <a href="/musicbeats/songs/" class="btn btn-primary">Listen To Album</a>
         {% endif %}
       </div>
     </div>
