@@ -1,3 +1,8 @@
+{%extends 'musicbeats/basic.html'%}
+{% block title %}Channel{% endblock %}
+
+{% block body %}
+
 <img src="{{album.album_logo}}">
 
 <h1>{{ album.album_title}}</h1>
@@ -5,7 +10,7 @@
 
 <ul>
     {% for song in album %}
-        <li>{{song.song_title}} - {{song.g</li>
+        <li>{{song.song_title}} - {{song.g}}</li>
 
 
 </ul>
