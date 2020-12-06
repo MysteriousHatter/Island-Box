@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.db.models import Case, When
 from django.contrib.auth.models import User
-from musicbeats.models import Song
+from musicbeats.models import Song, Albums
 from musicbeats.models import Watchlater
 
 def index(request):
     song = Song.objects.all()[0:3]
+
 
     if request.user.is_authenticated:
         wl = Watchlater.objects.filter(user=request.user)
@@ -21,3 +22,4 @@ def index(request):
         watch = Song.objects.all()[0:3]
 
     return render(request, 'index.html', {'song': song, 'watch': watch})
+

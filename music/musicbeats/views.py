@@ -24,7 +24,7 @@ def history(request):
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(ids)])
     song = Song.objects.filter(song_id__in=ids).order_by(preserved)
 
-    return render(request, 'musicbeats/history.html', {"history": song})
+    return render(request, 'musicbeats/history.html', {"history": history})
 
 def watchlater(request):
     if request.method == "POST":
@@ -82,7 +82,7 @@ def albumDes(request, id):
 
 def albums(request):
     album = Albums.objects.all()
-    return render(request, 'musicbeats/albums.html', {'album': album})
+    return render(request, 'musicbeats/albums.html', {'albums': album})
 
 
 

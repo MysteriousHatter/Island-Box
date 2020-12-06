@@ -10,7 +10,7 @@
 {% endif %}
 
 <div class="container">
-{% for i in history reversed %}
+{% for i in history reversed%}
 <div class="card mb-3" style="max-width: 940px; padding-top: 3%;">
   <div class="row no-gutters">
     <div class="col-md-4">
@@ -21,7 +21,7 @@
         <h5 class="card-title" style="color: blue; font-weight: 550;">{{i.name}}</h5>
         <p class="card-text">Tags: {{i.tags}}</p>
         <p class="card-text">Movie: {{i.movie}}</p>
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Song</a>
+        <a href="/musicbeats/songs/{{i.music_id}}" class="btn btn-primary">Listen To Song</a>
       </div>
     </div>
   </div>
