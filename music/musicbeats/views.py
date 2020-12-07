@@ -38,7 +38,7 @@ def watchlater(request):
                 message = "Your Video is Already Added"
                 break
         else:
-            watchlater = Watchlater(user=user, video_id=video_id)
+            watchlater = Watchlater(user=user)
             watchlater.save()
             message = "Your Video is Succesfully Added"
 
@@ -172,7 +172,7 @@ def upload(request):
         singer = request.POST['singer']
         tag = request.POST['tag']
         image = request.FILES['images']
-
+       # albumlink = request.POST['album']
         credit = request.POST['credit']
         song = request.FILES['file']
 

@@ -26,7 +26,7 @@ class Song(models.Model):
     image = models.ImageField(upload_to='images')
     song = models.FileField(upload_to='images')
     credit = models.CharField(max_length=1000, default="")
-    album = models.ForeignKey(Albums, on_delete=models.CASCADE, default=1)
+   # album = models.ForeignKey(Albums, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -34,7 +34,7 @@ class Song(models.Model):
 class Watchlater(models.Model):
      watch_id = models.AutoField(primary_key=True)
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-#    video_id = models.FileField(max_length=1000, default="")
+
 
 class History(models.Model):
     hist_id = models.AutoField(primary_key=True)
