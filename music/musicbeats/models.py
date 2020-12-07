@@ -25,21 +25,21 @@ class Song(models.Model):
     tags = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images')
     song = models.FileField(upload_to='images')
-    credit = models.CharField(max_length=100000, default="")
+    credit = models.CharField(max_length=1000, default="")
     album = models.ForeignKey(Albums, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
 
 class Watchlater(models.Model):
-    watch_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    video_id = models.CharField(max_length=10000000, default="")
+     watch_id = models.AutoField(primary_key=True)
+     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#    video_id = models.FileField(max_length=1000, default="")
 
 class History(models.Model):
     hist_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    music_id = models.CharField(max_length=10000000, default="")
+    music_id = models.CharField(max_length=100, default="")
 
 class Channel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
