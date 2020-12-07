@@ -1,0 +1,39 @@
+<{%extends 'musicbeats/basic.html'%}
+{% block title%}Album Upload{% endblock %}
+
+{% block body %}
+
+<h2 style="text-align: center; padding-top: 2%; color: rgb(218, 16, 16);">Upload Your Music</h2>
+
+<div class="container my-3">
+    <form action="/musicbeats/Albumupload" enctype="multipart/form-data" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Your Album Genre</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="songName" name="name" placeholder="Genre Name">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Album Title</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="artistName" name="singer" placeholder="The Title">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Album Art Link: </label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="images">
+          </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Artist Name</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Add Credit Link" name="name">
+          </div>
+
+
+    <div style="padding-top: 3%; padding-bottom: 3%;">
+        <button type="submit" class="btn btn-primary">Upload...</button>
+    </div>
+      </form>
+    </div>
+{% endblock %}
