@@ -6,12 +6,12 @@
 
 {% block body %}
    {% for profile in profiles %}
-        <div class="ui segmment"style="width: 18rem; display: block; margin-left: auto; margin-right: auto; width: 50% ;text-align: center;">
+        <div class="ui segmment">
             {{profile}}
             <br>
             <a href= {% url 'musicbeats:channel-Detail' profile.pk %}>
                  <img src="/media/{{profile.image}}" alt="" height="500px" width="350px">
-               <a href="/musicbeats/channelDetail"> <button class="btn btn-primary">See Profile</button>
+                <button class="btn btn-primary">See Profile</button>
             </a>
         </div>
     {% endfor %}
