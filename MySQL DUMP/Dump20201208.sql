@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `csi3450` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `csi3450`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: csi3450
+-- Host: 127.0.0.1    Database: csi3450
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -116,7 +118,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$216000$D61I6OLZNlwC$VZrUzZEmzWLbwet3fKSS7Y9FoS9cNIhHhhRGA91sf+A=','2020-12-07 02:46:25.115266',1,'alec','','','alecbreslow@oaklnd.edu',1,1,'2020-12-07 02:41:05.804053'),(2,'pbkdf2_sha256$216000$Ibba0FnJ7sQm$XzEXN82HHGJhVknGrXBCHImV4hOgr5HQ/jZlK036EWg=','2020-12-08 17:15:00.533925',0,'ham','Alec','Breslow','AZX230@gmail.com',0,1,'2020-12-07 02:44:10.058935'),(3,'pbkdf2_sha256$216000$pSP1VRGgITQO$ZN4Uz9taMlrAG/QMSYxUvlDc9BPIabfHyZhv24tGmis=','2020-12-07 03:39:19.292736',0,'bam','bam','hamlo','alec@maskaudioelectronics.com',0,1,'2020-12-07 03:38:54.667771');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +209,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +218,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2020-12-07 02:42:42.788801','1','NERVE\'S ENDING - THE QUICK BROWN FOX',1,'[{\"added\": {}}]',7,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +261,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +270,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-12-07 00:18:43.734154'),(2,'auth','0001_initial','2020-12-07 00:18:43.915669'),(3,'admin','0001_initial','2020-12-07 00:18:44.350504'),(4,'admin','0002_logentry_remove_auto_add','2020-12-07 00:18:44.496189'),(5,'admin','0003_logentry_add_action_flag_choices','2020-12-07 00:18:44.509081'),(6,'contenttypes','0002_remove_content_type_name','2020-12-07 00:18:44.708547'),(7,'auth','0002_alter_permission_name_max_length','2020-12-07 00:18:44.798306'),(8,'auth','0003_alter_user_email_max_length','2020-12-07 00:18:44.823240'),(9,'auth','0004_alter_user_username_opts','2020-12-07 00:18:44.831219'),(10,'auth','0005_alter_user_last_login_null','2020-12-07 00:18:44.889064'),(11,'auth','0006_require_contenttypes_0002','2020-12-07 00:18:44.893088'),(12,'auth','0007_alter_validators_add_error_messages','2020-12-07 00:18:44.902062'),(13,'auth','0008_alter_user_username_max_length','2020-12-07 00:18:44.963863'),(14,'auth','0009_alter_user_last_name_max_length','2020-12-07 00:18:45.026695'),(15,'auth','0010_alter_group_name_max_length','2020-12-07 00:18:45.049634'),(16,'auth','0011_update_proxy_permissions','2020-12-07 00:18:45.059640'),(17,'auth','0012_alter_user_first_name_max_length','2020-12-07 00:18:45.118450'),(18,'musicbeats','0001_initial','2020-12-07 00:18:45.413660'),(19,'sessions','0001_initial','2020-12-07 00:18:46.041978');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-12-07 00:18:43.734154'),(2,'auth','0001_initial','2020-12-07 00:18:43.915669'),(3,'admin','0001_initial','2020-12-07 00:18:44.350504'),(4,'admin','0002_logentry_remove_auto_add','2020-12-07 00:18:44.496189'),(5,'admin','0003_logentry_add_action_flag_choices','2020-12-07 00:18:44.509081'),(6,'contenttypes','0002_remove_content_type_name','2020-12-07 00:18:44.708547'),(7,'auth','0002_alter_permission_name_max_length','2020-12-07 00:18:44.798306'),(8,'auth','0003_alter_user_email_max_length','2020-12-07 00:18:44.823240'),(9,'auth','0004_alter_user_username_opts','2020-12-07 00:18:44.831219'),(10,'auth','0005_alter_user_last_login_null','2020-12-07 00:18:44.889064'),(11,'auth','0006_require_contenttypes_0002','2020-12-07 00:18:44.893088'),(12,'auth','0007_alter_validators_add_error_messages','2020-12-07 00:18:44.902062'),(13,'auth','0008_alter_user_username_max_length','2020-12-07 00:18:44.963863'),(14,'auth','0009_alter_user_last_name_max_length','2020-12-07 00:18:45.026695'),(15,'auth','0010_alter_group_name_max_length','2020-12-07 00:18:45.049634'),(16,'auth','0011_update_proxy_permissions','2020-12-07 00:18:45.059640'),(17,'auth','0012_alter_user_first_name_max_length','2020-12-07 00:18:45.118450'),(18,'musicbeats','0001_initial','2020-12-07 00:18:45.413660'),(19,'sessions','0001_initial','2020-12-07 00:18:46.041978'),(20,'musicbeats','0002_auto_20201206_2230','2020-12-07 04:51:09.795281'),(21,'musicbeats','0003_remove_song_album','2020-12-07 04:51:09.895047');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,6 +296,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('19f2w2sj66rs4f8q7m8w4hnda4e3mvqy','e30:1km7MV:xLfQdfIglPemI5DWRWGsKOoElF2qJ832zs4x77iHBfs','2020-12-21 03:38:55.363588'),('78qq6d8wv9dqaupx6vglsfge79a0m3gs','.eJxVjDsOwjAQBe_iGll24t9S0nMGy_bu4gBypDipEHeHSCmgfTPzXiKmba1x67TECcVZDOL0u-VUHtR2gPfUbrMsc1uXKctdkQft8jojPS-H-3dQU6_fWoMHRlOUBeScySApdMAKveMyBsuOPKugvQMChdaBHSCwTmjNqKx4fwD4WTfS:1kmgZo:8f1RFz1lNBXO16XDQ7i0aM-mMpXkBrgNgkbIUM8dbIA','2020-12-22 17:15:00.545913'),('fvisg755xkqa74fpjjzgg7qwbxrawq7a','e30:1km6VB:2ybUYtmcUWU-_qZivvr5lczMhZDQzLcaHkwuF_jdLtA','2020-12-21 02:43:49.968963'),('nouh8x4yefkb783hqexz2t4t0ucrc8jh','e30:1km6VW:hwo7XXUOcPaZVohkT9Q3yCOwBiGwBUQmC3WgaETLEB4','2020-12-21 02:44:10.627390'),('q9rohnf3lnguk3d1qirwai2w69u18xpv','e30:1km6Sw:eKmTM8jSaMV2N7cP39cawoJpFfF_AYHbgHESxaUpBw0','2020-12-21 02:41:30.971775');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +314,7 @@ CREATE TABLE `musicbeats_albums` (
   `artist_pic` varchar(100) NOT NULL,
   `art_name` varchar(2000) NOT NULL,
   PRIMARY KEY (`albums_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,6 +323,7 @@ CREATE TABLE `musicbeats_albums` (
 
 LOCK TABLES `musicbeats_albums` WRITE;
 /*!40000 ALTER TABLE `musicbeats_albums` DISABLE KEYS */;
+INSERT INTO `musicbeats_albums` VALUES (1,'speedcore','NERVE\'S ENDING','images/The_Quick_Brown_Fox_-_NERVES_ENDING_-_cover_AxJay2H.png','THE QUICK BROWN FOX');
 /*!40000 ALTER TABLE `musicbeats_albums` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -421,11 +427,8 @@ CREATE TABLE `musicbeats_song` (
   `image` varchar(100) NOT NULL,
   `song` varchar(100) NOT NULL,
   `credit` varchar(1000) NOT NULL,
-  `album_id` int NOT NULL,
-  PRIMARY KEY (`song_id`),
-  KEY `musicbeats_song_album_id_8f4f5b4f_fk_musicbeats_albums_albums_id` (`album_id`),
-  CONSTRAINT `musicbeats_song_album_id_8f4f5b4f_fk_musicbeats_albums_albums_id` FOREIGN KEY (`album_id`) REFERENCES `musicbeats_albums` (`albums_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`song_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -434,6 +437,7 @@ CREATE TABLE `musicbeats_song` (
 
 LOCK TABLES `musicbeats_song` WRITE;
 /*!40000 ALTER TABLE `musicbeats_song` DISABLE KEYS */;
+INSERT INTO `musicbeats_song` VALUES (1,'ORGAN GRINDER','ANDY PICHTER','NOTMUSIC','images/cover_8h2xzL4.jpg','images/Andy_Pitcher_-_Tensor_Tracks_-_12_Organ_Grinder_0uUzufD.mp3','tensor'),(2,'REGARDLESS','THE QUICK BROWN FOX','speedcore','images/The_Quick_Brown_Fox_-_NERVES_ENDING_-_cover_XiKEEYj.png','images/The_Quick_Brown_Fox_-_NERVES_ENDING_-_02_POP_qsp2pe4.mp3','');
 /*!40000 ALTER TABLE `musicbeats_song` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,10 +451,11 @@ DROP TABLE IF EXISTS `musicbeats_watchlater`;
 CREATE TABLE `musicbeats_watchlater` (
   `watch_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
+  `video_id` varchar(1000) NOT NULL DEFAULT '',
   PRIMARY KEY (`watch_id`),
   KEY `musicbeats_watchlater_user_id_ffbb0954_fk_auth_user_id` (`user_id`),
   CONSTRAINT `musicbeats_watchlater_user_id_ffbb0954_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,6 +464,7 @@ CREATE TABLE `musicbeats_watchlater` (
 
 LOCK TABLES `musicbeats_watchlater` WRITE;
 /*!40000 ALTER TABLE `musicbeats_watchlater` DISABLE KEYS */;
+INSERT INTO `musicbeats_watchlater` VALUES (1,3,''),(2,3,'1');
 /*!40000 ALTER TABLE `musicbeats_watchlater` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,4 +481,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-06 19:34:18
+-- Dump completed on 2020-12-08 16:22:39
