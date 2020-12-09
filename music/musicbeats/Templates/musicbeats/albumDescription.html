@@ -24,7 +24,7 @@
              <div class="row">
             <form action="/musicbeats/watchlater" method="POST">{% csrf_token %}
             <input type="hidden" name="video_id" value="{{song.song_id}}">
-            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listen Later</button>
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Your Playlist</button>
             </form>
             <a download href="/media/{{song.song}}" style="padding-left: 1%;"><button class="btn btn-outline-danger">Download Song</button></a>
             </div>

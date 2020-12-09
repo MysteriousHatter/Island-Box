@@ -142,6 +142,7 @@ def channelView(request,channel):
 
 
     return render(request, "musicbeats/channel.html", {"channel": chan, "song": song})
+
 class ChannelListView(ListView):
     model = Channel
     template_name = 'musicbeats/channel2.html'
