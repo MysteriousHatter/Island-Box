@@ -34,7 +34,7 @@ class Song(models.Model):
 class Watchlater(models.Model):
      watch_id = models.AutoField(primary_key=True)
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-     video_id = models.FileField(max_length=1000, default="1")
+     video_id = models.CharField(max_length=10000000000, default="")
 
 class History(models.Model):
     hist_id = models.AutoField(primary_key=True)
@@ -42,8 +42,6 @@ class History(models.Model):
     music_id = models.CharField(max_length=100, default="")
 
 class Channel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    following = models.ManyToManyField(User, related_name='following', blank=True)
     bio = models.TextField(default='no bio')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -51,6 +49,8 @@ class Channel(models.Model):
     name = models.CharField(max_length=10000)
     song = models.FileField(upload_to='images',default='music\media\images\European-village-birds-sounds.mp3')
     image = models.ImageField(upload_to='images')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    following = models.ManyToManyField(User, related_name='following', blank=True)
 
 
     def __str__(self):

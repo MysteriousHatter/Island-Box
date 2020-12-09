@@ -5,15 +5,15 @@
 
 <div class="container">
 
-<div>
-
+<div style="padding-top: 3%; padding-bottom: 2%; font-size: 200%;">
+Your Search Result for "{{query}}"
 </div>
 
-{% for i in song %}
+{% for song in songs reversed %}
 <div class="card mb-3" style="max-width: 940px; padding-top: 3%;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="/media/{{i.image}}" class="card-img" alt="...">
+      <img src="/media/{{song.image}}" class="card-img" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -22,10 +22,10 @@
         {% if user.is_authenticated %}
         <form action="/musicbeats/history" method="POST">{% csrf_token %}
           <input type="hidden" name="music_id" value="{{i.song_id}}">
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Song</a>
+        <a href="/musicbeats/songs/{{song.song_id}}" class="btn btn-primary">Listen To Song</a>
         </form>
         {% else %}
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Song</a>
+        <a href="/musicbeats/songs/{{song.song_id}}" class="btn btn-primary">Listen To Song</a>
         {% endif %}
       </div>
     </div>

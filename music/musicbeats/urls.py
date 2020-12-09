@@ -17,6 +17,6 @@ urlpatterns = [
     path('<pk>/', views.ChannelDetailView.as_view(), name='channel-Detail'),
     path('c/<str:channel>', views.channelView, name='channel'),
     path('upload', views.upload, name='upload'),
-    path('search', views.upload, name='search'),
+    path('search', views.search, name='search'),
     path('switch_follow', views.follow_unfollow_profile, name='follow-unfollow-view'),
 ]

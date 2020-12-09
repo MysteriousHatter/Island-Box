@@ -6,27 +6,30 @@
 
 
 
-{% for i in albumDes %}
-<div class="card mb-3" style="max-width: 940px; padding-top: 3%;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="/media/{{i.image}}" class="card-img" alt="...">
+{% for i in albums.song_set.all %}
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/media/{{song.image}}" alt="" height="500px" width="350px">
+        </div>
+        <div class="col-md-8">
+            <h2 style="padding-top: 5%; font-weight: 550; color: blue">Title: {{song.name}}</h2>
+            <h4 style="padding-top: 5%; font-weight: 550;">Category: {{song.tags}}</h4>
+            <h4 style="padding-top: 5%; font-weight: 550;">Movie: {{song.movie}}</h4>
+            <h4 style="padding-top: 5%; font-weight: 550;">Singer: {{song.singer}}</h4>
+            <audio controls>
+                <source src="/media/{{song.song}}" type="audio/mp3">
+            </audio>
+            <div style="padding-top: 2%;">
+
+             <div class="row">
+            <form action="/musicbeats/watchlater" method="POST">{% csrf_token %}
+            <input type="hidden" name="video_id" value="{{song.song_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listen Later</button>
+            </form>
+            <a download href="/media/{{song.song}}" style="padding-left: 1%;"><button class="btn btn-outline-danger">Download Song</button></a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title" style="color: blue; font-weight: 550;">{{i.name}}</h5>
-        <p class="card-text">{{i.tags}}</p>
-        {% if user.is_authenticated %}
-        <form action="/musicbeats/history" method="POST">{% csrf_token %}
-          <input type="hidden" name="music_id" value="{{i.song_id}}">
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Song</a>
-        </form>
-        {% else %}
-        <a href="/musicbeats/songs/{{i.song_id}}" class="btn btn-primary">Listen To Song</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
 </div>
 {% endfor %}
 </div>

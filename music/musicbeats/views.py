@@ -24,7 +24,7 @@ def history(request):
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(ids)])
     song = Song.objects.filter(song_id__in=ids).order_by(preserved)
 
-    return render(request, 'musicbeats/history.html', {"history": history})
+    return render(request, 'musicbeats/history.html', {"history": song})
 
 def watchlater(request):
     if request.method == "POST":
@@ -38,7 +38,7 @@ def watchlater(request):
                 message = "Your Song is Already Added"
                 break
         else:
-            watchlater = Watchlater(user=user)
+            watchlater = Watchlater(user=user, video_id=video_id)
             watchlater.save()
             message = "Your Song is Succesfully Added"
 
@@ -56,15 +56,21 @@ def watchlater(request):
     return render(request, "musicbeats/watchlater.html", {'song': song})
 
 def follow_unfollow_profile(request):
+    context = {}
     if request.method == "POST":
-        my_channel = Channel.objects.get(user=request.user)
-        pk = request.POST.get('profile_pk')
-        obj = Channel.objects.get(pk=pk)
+        check = Channel.objects.filter(user=request.user)
+        print(check, len(check))
+        if len(check) > 0:
 
-        if obj.user in my_channel.following.all():
-            my_channel.following.remove(obj.user)
-        else:
-            my_channel.following.add(obj.user)
+            my_channel = Channel.objects.get(user=request.user)
+            pk = request.POST.get('profile_pk')
+            context['my_channel'] = my_channel
+            obj = Channel.objects.get(pk=pk)
+
+            if obj.user in my_channel.following.all():
+                my_channel.following.remove(obj.user)
+            else:
+                my_channel.following.add(obj.user)
         return redirect(request.META.get('HTTP_REFERER'))
     return redirect('musicbeats: channel-list-view')
 
@@ -78,7 +84,7 @@ def songpost(request, id):
 
 def albumDes(request, id):
     albums = Albums.objects.filter(songs_id=id).first()
-    return render(request, 'musicbeats/albumDescription.html', {'albumDes': albums})
+    return render(request, 'musicbeats/albumDescription.html', {'albums': albums})
 
 def albums(request):
     album = Albums.objects.all()
@@ -105,8 +111,10 @@ def signup(request):
         last_name = request.POST['lastname']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
+        Bio = request.POST['bio']
+        Img = request.POST['uimages']
 
-        myuser = User.objects.create_user(username, email, pass1)
+        myuser = User.objects.create_user(username, email, pass1, Bio, Img)
         myuser.first_name = first_name
         myuser.last_name = last_name
         myuser.save()
@@ -127,14 +135,13 @@ def logout_user(request):
 
 def channelView(request,channel):
     chan = Channel.objects.filter(name=channel).first()
-    #video_ids = str(chan.music).split(" ")[1:]
+    video_ids = str(chan.music).split(" ")[1:]
 
-    #preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
-    #song = Song.objects.filter(song_id__in=video_ids).order_by(preserved)
+    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
+    song = Song.objects.filter(song_id__in=video_ids).order_by(preserved)
 
 
-    return render(request, "musicbeats/channel.html", {"channel": chan})
-
+    return render(request, "musicbeats/channel.html", {"channel": chan, "song": song})
 class ChannelListView(ListView):
     model = Channel
     template_name = 'musicbeats/channel2.html'
@@ -154,15 +161,20 @@ class ChannelDetailView(DetailView):
         return view_profile
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = {}
         view_profile = self.get_object()
-        my_profile = Channel.objects.get(user=self.request.user)
-        if view_profile.user in my_profile.following.all():
-            follow = True
-        else:
-            follow = False
-        context["follow"] = follow
-        return context
+        check = Channel.objects.filter(user=self.request.user)
+        print(check, len(check))
+        if len(check) > 0:
+            context = super().get_context_data(**kwargs)
+            my_profile = Channel.objects.get(user=self.request.user)
+
+            if view_profile.user in my_profile.following.all():
+                follow = True
+            else:
+                follow = False
+
+            return context
 
 
 
@@ -181,6 +193,7 @@ def upload(request):
 
         music_id = song_model.song_id
         channel_find = Channel.objects.filter(name=str(request.user))
+        print(channel_find)
 
         for i in channel_find:
             i.music += f" {music_id}"
@@ -192,8 +205,8 @@ def upload(request):
 def search(request):
     query = request.GET.get("query")
     song = Song.objects.all()
-    qs = song.filter(nam_icontains=query)
+    qs = song.filter(name__icontains=query)
 
-    return render(request, 'musicbeats/search.html', {"songs": qs} )
+    return render(request, 'musicbeats/search.html', {"songs": qs, "query": query} )
 
 
